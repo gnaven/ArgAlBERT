@@ -102,7 +102,7 @@ def convert_examples_to_features(examples, tokenizer):
     features = []
 
     for (ex_index, example) in enumerate(examples):
-        text,label,sid,
+        #text,label,sid,
         text = example['text']
         label = example['label']
         sid = example['id']
