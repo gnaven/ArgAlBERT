@@ -6,7 +6,7 @@ metric:
 parameters:
   batch_size:
     values:
-    - 5
+    - 20
     
   epochs:
     values:
@@ -36,8 +36,8 @@ parameters:
   
   max_seq_length:
     distribution: int_uniform
-    max: 400
-    min: 200
+    max: 150
+    min: 100
     
   warmup_ratio:
     distribution: uniform

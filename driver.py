@@ -279,7 +279,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
     for step, batch in enumerate(tqdm(train_dataloader, desc="Iteration")):
         batch = tuple(t.to(DEVICE) for t in batch)
         input_ids, input_mask, segment_ids,  label_ids = batch
-
+        model.zero_grad()
         if args.model == "Albert":
             outputs = model(
                 input_ids,
@@ -303,7 +303,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
         total_loss.backward()
         optimizer.step()
         scheduler.step()
-        model.zero_grad()
+        
 
     return tr_loss
 
