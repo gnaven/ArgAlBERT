@@ -292,7 +292,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
 
         logits = outputs[0]
         #loss_fct = L1Loss()
-        loss_fct = nn.BCEWithLogitsLoss()
+        loss_fct = nn.CrossEntropyLoss()#BCEWithLogitsLoss()
 
         total_loss = loss_fct(logits.view(-1), label_ids.view(-1))
         
@@ -337,7 +337,7 @@ def eval_epoch(model, dev_dataloader, optimizer):
             
             logits = outputs[0]
             
-            loss_fct = nn.BCEWithLogitsLoss()
+            loss_fct = nn.CrossEntropyLoss()#BCEWithLogitsLoss()
             loss = loss_fct(logits.view(-1), label_ids.view(-1))
             
             total_loss = loss
@@ -381,7 +381,7 @@ def test_epoch(model, data_loader):
             
             logits = outputs[0]
             
-            loss_fct = nn.BCEWithLogitsLoss()
+            loss_fct = nn.CrossEntropyLoss()#BCEWithLogitsLoss()
             loss = loss_fct(logits.view(-1), label_ids.view(-1))
             
 
@@ -428,7 +428,7 @@ def test_score_model(model, test_data_loader, exclude_zero=False):
     #predictions = torch.round(torch.sigmoid(predictions))
     #print("predictions",predictions[:10])
     #print("ytest",y_test[:10])
-    if len(set(y_test))>1:  
+    if len(set(y_test))>2:  
         f_score = f1_score(y_test, predictions,average='weighted')
     else:
         f_score = f1_score(y_test, predictions)        
