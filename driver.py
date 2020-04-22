@@ -526,7 +526,7 @@ def main():
     wandb.init(project="debate")
     wandb.config.update(args)
 
-    set_random_seed(9999)
+    #set_random_seed(9999)
     (
         train_data_loader,
         dev_data_loader,
