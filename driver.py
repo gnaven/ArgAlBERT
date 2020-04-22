@@ -291,6 +291,8 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
         logits = outputs[0]
         #loss_fct = L1Loss()
         loss_fct = nn.BCEWithLogitsLoss()
+        print(logits.size())
+        print(label_ids.size())
         total_loss = loss_fct(logits.view(-1), label_ids.view(-1))
         
 
