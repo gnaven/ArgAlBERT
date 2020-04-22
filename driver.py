@@ -133,7 +133,7 @@ def convert_examples_to_features(examples, tokenizer):
         assert len(input_mask) == args.max_seq_length
         assert len(segment_ids) == args.max_seq_length
 
-        label_id = example.label
+        label_id = example.label>1
 
         features.append(
             InputFeatures(
