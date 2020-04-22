@@ -4,7 +4,12 @@ import torch
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["WANDB_PROGRAM"] = "driver.py"
 
-DEVICE = torch.device("cuda:0")
+if torch.cuda.is_available():
+    
+    DEVICE = torch.device("cuda:0")
+else:
+    DEVICE = torch.device("cpu")
+    
 MOSI_ACOUSTIC_DIM = 74
 MOSI_VISUAL_DIM = 47
 

@@ -218,7 +218,7 @@ class AlbertForNextSentencePrediction(AlbertPreTrainedModel):
 class AlbertForDebateSequenceClassification(AlbertPreTrainedModel):
     def __init__(self, config,newly_added_config):
         super().__init__(config)
-        self.num_labels = 1
+        self.num_labels = 3
         self.albert = AlbertModel(config,newly_added_config)
         self.dropout = nn.Dropout(config.classifier_dropout_prob)
         #self.classifier = nn.Linear(config.hidden_size, self.num_labels)

@@ -294,7 +294,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
         #loss_fct = L1Loss()
         loss_fct = nn.CrossEntropyLoss()#BCEWithLogitsLoss()
 
-        total_loss = loss_fct(logits, label_ids)#loss_fct(logits.view(-1), label_ids.view(-1))
+        total_loss = loss_fct(logits, label_ids.long())#loss_fct(logits.view(-1), label_ids.view(-1))
         
 
                 
@@ -338,7 +338,7 @@ def eval_epoch(model, dev_dataloader, optimizer):
             logits = outputs[0]
             
             loss_fct = nn.CrossEntropyLoss()#BCEWithLogitsLoss()
-            loss = loss_fct(logits, label_ids)#loss_fct(logits.view(-1), label_ids.view(-1))
+            loss = loss_fct(logits, label_ids.long())#loss_fct(logits.view(-1), label_ids.view(-1))
             
             total_loss = loss
             
@@ -382,15 +382,17 @@ def test_epoch(model, data_loader):
             logits = outputs[0]
             
             loss_fct = nn.CrossEntropyLoss()#BCEWithLogitsLoss()
-            loss = loss_fct(logits, label_ids)#loss_fct(logits.view(-1), label_ids.view(-1))
+            loss = loss_fct(logits, label_ids.long())#loss_fct(logits.view(-1), label_ids.view(-1))
             
 
             test_loss += loss.item()
             
             nb_eval_steps += 1
             #because bcewithlogitloss is used
-            logits=torch.round(torch.sigmoid(logits))
+            #logits=torch.round(torch.sigmoid(logits))
             
+            #getting labels pred
+            _,logits = torch.max(torch.sigmoid(logits),1)
             
             if len(preds) == 0:
                 preds.append(logits.detach().cpu().numpy())
