@@ -428,7 +428,10 @@ def test_score_model(model, test_data_loader, exclude_zero=False):
     #predictions = torch.round(torch.sigmoid(predictions))
     #print("predictions",predictions[:10])
     #print("ytest",y_test[:10])
-    f_score = f1_score(y_test, predictions)
+    if len(set(y_test))>1:  
+        f_score = f1_score(y_test, predictions,average='weighted')
+    else:
+        f_score = f1_score(y_test, predictions)        
     confusion_matrix_result = confusion_matrix(y_test, predictions)
     classification_report_score = classification_report(y_test, predictions, digits=5)
     accuracy = accuracy_score(y_test, predictions)
