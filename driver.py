@@ -133,7 +133,7 @@ def convert_examples_to_features(examples, tokenizer):
         assert len(input_mask) == args.max_seq_length
         assert len(segment_ids) == args.max_seq_length
 
-        label_id = example.label>1
+        label_id = example.label
 
         features.append(
             InputFeatures(
@@ -281,13 +281,13 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
         input_ids, input_mask, segment_ids,  label_ids = batch
         model.zero_grad()
         
-        print(label_ids.size())        
+     
         if args.model == "Albert":
             outputs = model(
                 input_ids,
                 token_type_ids=segment_ids,
                 attention_mask=input_mask,
-                labels=None,
+                labels=label_ids.unique().tolist(),
             )
 
         logits = outputs[0]
@@ -331,7 +331,7 @@ def eval_epoch(model, dev_dataloader, optimizer):
                     input_ids,
                     token_type_ids=segment_ids,
                     attention_mask=input_mask,
-                    labels=None,
+                    labels=label_ids.unique().tolist(),
                 )
 
             
