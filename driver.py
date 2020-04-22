@@ -280,7 +280,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
         batch = tuple(t.to(DEVICE) for t in batch)
         input_ids, input_mask, segment_ids,  label_ids = batch
         model.zero_grad()
-        print(logits.size())
+        
         print(label_ids.size())        
         if args.model == "Albert":
             outputs = model(
