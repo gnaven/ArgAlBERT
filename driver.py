@@ -287,7 +287,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
                 input_ids,
                 token_type_ids=segment_ids,
                 attention_mask=input_mask,
-                labels=label_ids.unique().tolist(),
+                labels=[0,1,2]#label_ids.unique().tolist(),
             )
 
         logits = outputs[0]
@@ -331,7 +331,7 @@ def eval_epoch(model, dev_dataloader, optimizer):
                     input_ids,
                     token_type_ids=segment_ids,
                     attention_mask=input_mask,
-                    labels=label_ids.unique().tolist(),
+                    labels=[0,1,2]#label_ids.unique().tolist(),
                 )
 
             
@@ -376,7 +376,7 @@ def test_epoch(model, data_loader):
                     input_ids,
                     token_type_ids=segment_ids,
                     attention_mask=input_mask,
-                    labels=None,
+                    labels=[0,1,2]#None,
                 )
             
             logits = outputs[0]
@@ -534,7 +534,7 @@ def main():
     wandb.init(project="debate")
     wandb.config.update(args)
 
-    #set_random_seed(9999)
+    set_random_seed(9999)
     (
         train_data_loader,
         dev_data_loader,
