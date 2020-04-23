@@ -287,7 +287,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler):
                 input_ids,
                 token_type_ids=segment_ids,
                 attention_mask=input_mask,
-                labels=[0,1,2]#label_ids.unique().tolist(),
+                labels=None#label_ids.unique().tolist(),
             )
 
         logits = outputs[0]
@@ -331,7 +331,7 @@ def eval_epoch(model, dev_dataloader, optimizer):
                     input_ids,
                     token_type_ids=segment_ids,
                     attention_mask=input_mask,
-                    labels=[0,1,2]#label_ids.unique().tolist(),
+                    labels=None#label_ids.unique().tolist(),
                 )
 
             
@@ -376,7 +376,7 @@ def test_epoch(model, data_loader):
                     input_ids,
                     token_type_ids=segment_ids,
                     attention_mask=input_mask,
-                    labels=[0,1,2]#None,
+                    labels=None,
                 )
             
             logits = outputs[0]
