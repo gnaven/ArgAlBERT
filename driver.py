@@ -170,7 +170,7 @@ def get_appropriate_dataset(data, tokenizer, parition):
 def set_up_data_loader():
     
     with open(
-        os.path.join(DATASET_LOCATION, "debate_dataset.pkl"), "rb"
+        os.path.join(DATASET_LOCATION, "debate_dataset_conreb.pkl"), "rb"
     ) as handle:
         all_data = pickle.load(handle)
         
