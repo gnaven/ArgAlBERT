@@ -531,7 +531,7 @@ def get_NSP(model, train_data_loader, dev_data_loader, test_data_loader):
 
 
 def main():
-    wandb.init(project="debate")
+    wandb.init(project="debate_cons_reb")
     wandb.config.update(args)
 
     set_random_seed(9999)
