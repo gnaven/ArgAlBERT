@@ -36,8 +36,8 @@ parameters:
   
   max_seq_length:
     distribution: int_uniform
-    max: 150
-    min: 100
+    max: 400
+    min: 150
     
   warmup_ratio:
     distribution: uniform
